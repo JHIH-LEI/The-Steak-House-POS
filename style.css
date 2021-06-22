@@ -1,0 +1,5 @@
+/* just for help coding */
+.col-md-4, .col-md-8 {
+  outline: 1px solid steelblue;
+  min-height: 600px;
+}
