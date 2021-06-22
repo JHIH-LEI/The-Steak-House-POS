@@ -1,3 +1,7 @@
+.container {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 3px;
+}
 /* just for help coding */
 .col-md-4, .col-md-8 {
   outline: 1px solid steelblue;
