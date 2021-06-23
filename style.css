@@ -34,3 +34,12 @@
 [data-pos="delete-drink"]:hover {
   color: #333;
 }
+
+/* right-menu */
+.menu .card-body {
+  cursor: pointer;
+}
+
+.menu .card-body:hover {
+  box-shadow: 0px 0px 10px 1px rgba(255,255,255,0.8)
+}
