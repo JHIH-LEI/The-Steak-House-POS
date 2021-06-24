@@ -3,6 +3,7 @@ const orderLists = document.querySelector('[data-order-lists]')
 const checkoutBtn = document.querySelector('[data-pos="checkout"]')
 const confirmCheckout = document.querySelector('#send')
 let PRODUCT_CUSTOMIZE_OPT = 3
+let rawOrderHistory = []
 // constructor function
 function Pos() {
 }
@@ -49,6 +50,7 @@ checkoutBtn.addEventListener('click', () => {
 
 confirmCheckout.addEventListener('click', e => {
   // add order to order history
+  steakPos.addToOrderHistory(rawOrderHistory)
   // clean order list
   steakPos.clearOrder(orderLists)
 })
@@ -113,8 +115,8 @@ Pos.prototype.deleteOrder = function (target) {
 
 Pos.prototype.checkout = function () {
   let totalPrice = 0
-  let order = []
   let totalOrder = 0
+  let order = []
   let rawHTML = ``
   const modalContent = document.querySelector('.modal-body')
   // 訂單資料
@@ -135,6 +137,9 @@ Pos.prototype.checkout = function () {
   <p>Total: ${totalPrice}</p>
   </div>
   `
+  order.push(totalPrice)
+  order.push(totalOrder)
+  rawOrderHistory = order
 }
 
 Pos.prototype.clearOrder = function (target) {
@@ -143,8 +148,28 @@ Pos.prototype.clearOrder = function (target) {
   })
 }
 
-Pos.prototype.addToOrderHistory = function () {
-  // 獲取訂單內容
-  // 將訂單分裝好
+Pos.prototype.addToOrderHistory = function (data) {
+  // 如果沒有設定這行，會造成每次新增訂單到歷史訂單，新資料會覆蓋舊資料
+  // 所以需要先把已有的資料拿出來，將新資料加進去(push)
+  const orderHistory = JSON.parse(localStorage.getItem('order')) || []
+  // 將每筆餐點分裝好 一筆完整的餐點會有名字、醬料、熟度
+  let ordersData = steakPos.group(data, 3)
+  // 加上訂單時間
+  const today = new Date()
+  ordersData.push(today)
+  // 包為整筆訂單
+  ordersData = ordersData.join()
+  // 將這筆訂單加入到歷史中
+  orderHistory.push(ordersData)
   // 存進localStorage
+  localStorage.setItem('order', JSON.stringify(orderHistory))
+}
+
+Pos.prototype.group = function (array, subGroupLength) {
+  let index = 0;
+  const newArray = [];
+  while (index < array.length) {
+    newArray.push(array.slice(index, index += subGroupLength))
+  }
+  return newArray
 }
