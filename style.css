@@ -61,7 +61,7 @@ body {
   max-height: 580px;
 }
 
-.col-md-8 {
+.col-md-8, #confirmation {
   overflow-y: auto;
   max-height: 580px;
 }
