@@ -18,10 +18,14 @@ body {
   align-items: center;
 }
 
-#crab {
-  margin-left: 5px;
-  max-width: 80px;
-  max-height: 80px;
+#logo {
+  padding: 8px;
+  margin-left: 20px;
+  max-width: 50px;
+  max-height: 50px;
+  background-color:rgb(255, 255, 255);
+  border:1px white;
+  border-radius:50%;
 }
 
 [data-pos="delete-drink"] {

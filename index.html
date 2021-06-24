@@ -8,15 +8,15 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
-  <title>蟹老闆的飲料點餐機</title>
+  <title>The Steak House</title>
 </head>
 
 <body>
   <!-- 標頭 -->
   <div class="container">
     <div id="title" class="mb-1">
-      <h2 class="text-center text-light pt-4">蟹老闆的飲料點餐機</h2><img
-        src="https://image.flaticon.com/icons/png/512/1795/1795594.png" alt="蟹老闆" id="crab">
+      <h2 class="text-center text-light pt-4">The Steak House</h2><img
+        src="https://image.flaticon.com/icons/png/512/676/676208.png" alt="logo" id="logo">
     </div>
     <!-- 機身 -->
     <div class="row pos">
@@ -37,26 +37,26 @@
           <div class="card-deck mb-3">
             <div class="card text-center">
               <label class="card-body">
-                <h5 class="card-title">Black Tea</h5>
-                <input type="radio" name="drink" value="Black Tea">
+                <h5 class="card-title">NEW YORK STRIP</h5>
+                <input type="radio" name="food" value="NEW YORK STRIP">
               </label>
             </div>
             <div class="card text-center">
               <label class="card-body">
-                <h5 class="card-title">Oolong Tea</h5>
-                <input type="radio" name="drink" value="Oolong Tea">
+                <h5 class="card-title">A5 JP WAGYU</h5>
+                <input type="radio" name="food" value="A5 JP WAGYU">
               </label>
             </div>
             <div class="card text-center">
               <label class="card-body">
-                <h5 class="card-title">Black coffee</h5>
-                <input type="radio" name="drink" value="Black coffee">
+                <h5 class="card-title">PRIME T-BONE</h5>
+                <input type="radio" name="food" value="PRIME T-BONE">
               </label>
             </div>
             <div class="card text-center">
               <label class="card-body">
-                <h5 class="card-title">Green Tea</h5>
-                <input type="radio" name="drink" value="Green Tea">
+                <h5 class="card-title">RUMP</h5>
+                <input type="radio" name="food" value="RUMP">
               </label>
             </div>
           </div> <!-- /first row of menu -->
@@ -65,67 +65,67 @@
           <div class="card-deck mb-3">
             <div class="card text-center">
               <label class="card-body">
-                <h5 class="card-title">Bubble Milk Tea</h5>
-                <input type="radio" name="drink" value="Bubble Milk Tea">
+                <h5 class="card-title">CLASSIC BURGER</h5>
+                <input type="radio" name="food" value="CLASSIC BURGER">
               </label>
             </div>
 
             <div class="card text-center">
               <label class="card-body">
-                <h5 class="card-title">Black Tea Latte</h5>
-                <input type="radio" name="drink" value="Black Tea Latte">
+                <h5 class="card-title">CLASSIC FILET</h5>
+                <input type="radio" name="food" value="CLASSIC FILET">
               </label>
             </div>
 
             <div class="card text-center">
               <label class="card-body">
-                <h5 class="card-title">Lemon Green Tea</h5>
-                <input type="radio" name="drink" value="Lemon Green Tea">
+                <h5 class="card-title">PRIME LAMB CHOP</h5>
+                <input type="radio" name="food" value="PRIME LAMB CHOP">
               </label>
             </div>
 
             <div class="card text-center">
               <label class="card-body">
-                <h5 class="card-title">Matcha Latte</h5>
-                <input type="radio" name="drink" value="Matcha Latte">
+                <h5 class="card-title">RIBEYE</h5>
+                <input type="radio" name="food" value="RIBEYE">
               </label>
             </div>
           </div>
         </section>
-        <!-- Ice -->
-        <section class="ice mb-3">
-          <label class="d-block text-light">Ice</label>
+        <!-- sauce -->
+        <section class="sauce mb-3">
+          <label class="d-block text-light">Sauce</label>
           <!-- bootstrap 4 button group -->
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-outline-primary">
-              <input type="radio" name="ice" value="No Ice" />No
-            </label>
-            <label class="btn btn-outline-primary">
-              <input type="radio" name="ice" value="Less Ice" />Less
-            </label>
             <label class="btn btn-outline-primary active">
-              <input type="radio" name="ice" value="Regular Ice" checked />Regular
+              <input type="radio" name="mushroom sauce" value="mushroom sauce" checked />mushroom sauce
+            </label>
+            <label class="btn btn-outline-primary">
+              <input type="radio" name="black pepper sauce" value=" black pepper sauce" />black pepper sauce
+            </label>
+            <label class="btn btn-outline-primary">
+              <input type="radio" name="mix" value="mix" />mix
             </label>
           </div> <!-- /bootstrap 4 button group -->
         </section>
-        <!-- sugar -->
-        <section class="sugar mb-3">
-          <label class="d-block text-light">Sugar</label>
+        <!-- maturity level -->
+        <section class="maturity-level mb-3">
+          <label class="d-block text-light">maturity level</label>
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-outline-info">
-              <input type="radio" name="sugar" value="No Sugar" />No
+              <input type="radio" name="maturity" value="Rare" />Rare
             </label>
             <label class="btn btn-outline-info">
-              <input type="radio" name="sugar" value="A Little Sugar" />A Little
+              <input type="radio" name="maturity" value="Medium Rare" />Medium-Rare
             </label>
             <label class="btn btn-outline-info">
-              <input type="radio" name="sugar" value="Half Sugar" />Half
-            </label>
-            <label class="btn btn-outline-info">
-              <input type="radio" name="sugar" value="Less Sugar" />Less
+              <input type="radio" name="maturity" value="Medium" />Medium
             </label>
             <label class="btn btn-outline-info active">
-              <input type="radio" name="sugar" value="Regular Sugar" checked="checked" />Regular
+              <input type="radio" name="maturity" value="Medium Well" checked />Medium-Well
+            </label>
+            <label class="btn btn-outline-info">
+              <input type="radio" name="maturity" value="Well" />Well
             </label>
           </div>
         </section>
