@@ -2,6 +2,7 @@ const addFoodButton = document.querySelector('[data-pos="add-food"]')
 const orderLists = document.querySelector('[data-order-lists]')
 const checkoutBtn = document.querySelector('[data-pos="checkout"]')
 const confirmCheckout = document.querySelector('#send')
+let PRODUCT_CUSTOMIZE_OPT = 3
 // constructor function
 function Pos() {
 }
@@ -47,6 +48,7 @@ checkoutBtn.addEventListener('click', () => {
 })
 
 confirmCheckout.addEventListener('click', e => {
+  // add order to order history
   // clean order list
   steakPos.clearOrder(orderLists)
 })
@@ -119,7 +121,7 @@ Pos.prototype.checkout = function () {
   // 訂單資料
   document.querySelectorAll('[data-order-info]').forEach(food => {
     order.push(food.textContent)
-    if (order.length === 3) {
+    if (order.length === PRODUCT_CUSTOMIZE_OPT) {
       // 餐點數量+1
       totalOrder++
       // 打發票
@@ -150,4 +152,9 @@ Pos.prototype.clearOrder = function (target) {
   target.querySelectorAll('.card').forEach(card => {
     card.remove()
   })
+}
+
+Pos.prototype.addToOrderHistory = function () {
+  // 獲取訂單內容
+  // 存進localStorage
 }
