@@ -2,7 +2,7 @@ const addDrinkButton = document.querySelector('[data-pos="add-drink"]')
 const orderLists = document.querySelector('[data-order-lists]')
 const checkoutBtn = document.querySelector('[data-pos="checkout"]')
 // constructor function
-function CrabPos() {
+function Pos() {
 }
 
 function Drink(name, ice, sugar) {
@@ -12,7 +12,7 @@ function Drink(name, ice, sugar) {
 }
 
 // create pos instance
-const crabPos = new CrabPos()
+const crabPos = new Pos()
 
 // add order
 addDrinkButton.addEventListener('click', () => {
@@ -69,7 +69,7 @@ Drink.prototype.price = function () {
 }
 
 // // Constructor function for Pos System
-CrabPos.prototype.addDrink = function (drink) {
+Pos.prototype.addDrink = function (drink) {
   let orderItemHTML = `<div class="card mb-3">
           <div class="card-body pt-3 pr-3">
             <!-- delete drink icon -->
@@ -89,7 +89,7 @@ CrabPos.prototype.addDrink = function (drink) {
   orderLists.insertAdjacentHTML('afterbegin', orderItemHTML)
 }
 
-CrabPos.prototype.getCheckedValue = function (inputName) {
+Pos.prototype.getCheckedValue = function (inputName) {
   let selectedOption = ''
   document.querySelectorAll(`input[name=${inputName}]`).forEach(item => {
     if (item.checked) {
@@ -99,11 +99,11 @@ CrabPos.prototype.getCheckedValue = function (inputName) {
   return selectedOption
 }
 
-CrabPos.prototype.deleteOrder = function (target) {
+Pos.prototype.deleteOrder = function (target) {
   target.remove()
 }
 
-CrabPos.prototype.checkout = function () {
+Pos.prototype.checkout = function () {
   let total = 0
   // get all price on orders and add on
   document.querySelectorAll('[data-drink-price]').forEach(drink => {
@@ -112,7 +112,7 @@ CrabPos.prototype.checkout = function () {
   alert(`total: ${total}`)
 }
 
-CrabPos.prototype.clearOrder = function (target) {
+Pos.prototype.clearOrder = function (target) {
   target.querySelectorAll('.card').forEach(card => {
     card.remove()
   })
