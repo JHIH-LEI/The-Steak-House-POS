@@ -19,35 +19,18 @@
         src="https://image.flaticon.com/icons/png/512/1795/1795594.png" alt="蟹老闆" id="crab">
     </div>
     <!-- 機身 -->
-    <div class="row pos-content">
-      <div id="left-side-order-list" class="col-md-4 p-4">
-        <div class="card mb-3">
-          <div class="card-body pt-3 pr-3">
-            <!-- delete drink icon -->
-            <div class="text-right">
-              <span data-pos="delete-drink">×</span>
-            </div>
-            <!-- /delete drink icon -->
-            <h6 class="card-title">Black Tea</h6>
-            <div class="card-text">Less Ice</div>
-            <div class="card-text">Half Sugar</div>
-          </div>
-
-          <div class="card-footer text-right">
-            <div class="card-text text-muted">
-              $ <span data-drink-price>30</span>
-            </div>
-          </div>
-        </div>
+    <div class="row pos">
+      <!-- order list -->
+      <div class="col-md-4 p-4" data-order-lists>
+        <!-- render order here-->
         <!-- checkout button -->
         <div class="text-right">
           <button class="btn btn-light" style="min-width: 120px;" data-pos="checkout">Checkout</button>
         </div>
         <!-- /checkout button -->
       </div>
-
+      <!-- right side menu -->
       <div class="col-md-8 py-2">
-        <!-- right side menu -->
         <section class="menu p-4 mb-3">
 
           <!-- first row of menu -->
@@ -154,6 +137,8 @@
       </div>
       <!-- /right side menu -->
     </div>
+
+  </div>
   </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
