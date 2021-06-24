@@ -60,3 +60,8 @@ body {
   overflow-y: auto;
   max-height: 580px;
 }
+
+.col-md-8 {
+  overflow-y: auto;
+  max-height: 580px;
+}
