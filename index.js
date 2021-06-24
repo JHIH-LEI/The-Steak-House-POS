@@ -82,3 +82,15 @@ addDrinkButton.addEventListener('click', () => {
   // add to order list
   crabPos.addDrink(orderDrink)
 })
+
+orderLists.addEventListener('click', (e) => {
+  let deleteBtn = e.target.matches('[data-pos="delete-drink"]')
+  if (!deleteBtn) {
+    return
+  }
+  crabPos.deleteOrder(e.target.parentElement.parentElement.parentElement)
+})
+
+CrabPos.prototype.deleteOrder = function (target) {
+  target.remove()
+}
