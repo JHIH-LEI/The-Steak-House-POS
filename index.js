@@ -1,5 +1,6 @@
 const addDrinkButton = document.querySelector('[data-pos="add-drink"]')
 const orderLists = document.querySelector('[data-order-lists]')
+const checkoutBtn = document.querySelector('[data-pos="checkout"]')
 // constructor function
 function CrabPos() {
 }
@@ -10,6 +11,42 @@ function Drink(name, ice, sugar) {
   this.sugar = sugar;
 }
 
+// create pos instance
+const crabPos = new CrabPos()
+
+// add order
+addDrinkButton.addEventListener('click', () => {
+  // get order list value
+  const drink = crabPos.getCheckedValue('drink')
+  const ice = crabPos.getCheckedValue('ice')
+  const sugar = crabPos.getCheckedValue('sugar')
+
+  // If no drink being chose then remind user
+  if (!drink) {
+    alert("You need select drink before you order sth")
+    return
+  }
+  // create drink instance
+  const orderDrink = new Drink(drink, ice, sugar)
+  // add to order list
+  crabPos.addDrink(orderDrink)
+})
+
+orderLists.addEventListener('click', (e) => {
+  let deleteBtn = e.target.matches('[data-pos="delete-drink"]')
+  if (!deleteBtn) {
+    return
+  }
+  crabPos.deleteOrder(e.target.parentElement.parentElement.parentElement)
+})
+
+checkoutBtn.addEventListener('click', () => {
+  // get total count
+  crabPos.checkout()
+  // clean order list
+  crabPos.clearOrder(orderLists)
+})
+
 // // Constructor function for Drink
 
 Drink.prototype.price = function () {
@@ -17,7 +54,7 @@ Drink.prototype.price = function () {
   switch (this.name) {
     case 'Black Tea':
     case 'Oolong Tea':
-    case 'Baozong Tea':
+    case 'Black coffee':
     case 'Green Tea':
       return 30
     case 'Bubble Milk Tea':
@@ -30,6 +67,7 @@ Drink.prototype.price = function () {
       alert('No this drink')
   }
 }
+
 // // Constructor function for Pos System
 CrabPos.prototype.addDrink = function (drink) {
   let orderItemHTML = `<div class="card mb-3">
@@ -61,36 +99,21 @@ CrabPos.prototype.getCheckedValue = function (inputName) {
   return selectedOption
 }
 
-// create pos instance
-const crabPos = new CrabPos()
-
-// add order
-addDrinkButton.addEventListener('click', () => {
-  // get order list value
-  const drink = crabPos.getCheckedValue('drink')
-  const ice = crabPos.getCheckedValue('ice')
-  const sugar = crabPos.getCheckedValue('sugar')
-
-  // If no drink being chose then remind user
-  if (!drink) {
-    alert("You need select drink before you order sth")
-    return
-  }
-  // create drink instance
-  const orderDrink = new Drink(drink, ice, sugar)
-
-  // add to order list
-  crabPos.addDrink(orderDrink)
-})
-
-orderLists.addEventListener('click', (e) => {
-  let deleteBtn = e.target.matches('[data-pos="delete-drink"]')
-  if (!deleteBtn) {
-    return
-  }
-  crabPos.deleteOrder(e.target.parentElement.parentElement.parentElement)
-})
-
 CrabPos.prototype.deleteOrder = function (target) {
   target.remove()
+}
+
+CrabPos.prototype.checkout = function () {
+  let total = 0
+  // get all price on orders and add on
+  document.querySelectorAll('[data-drink-price]').forEach(drink => {
+    total += Number(drink.textContent)
+  })
+  alert(`total: ${total}`)
+}
+
+CrabPos.prototype.clearOrder = function (target) {
+  target.querySelectorAll('.card').forEach(card => {
+    card.remove()
+  })
 }
