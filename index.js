@@ -114,38 +114,27 @@ Pos.prototype.deleteOrder = function (target) {
 Pos.prototype.checkout = function () {
   let totalPrice = 0
   let order = []
-  let invoice = ""
   let totalOrder = 0
-  let checkoutInfo = ``
+  let rawHTML = ``
   const modalContent = document.querySelector('.modal-body')
   // 訂單資料
-  document.querySelectorAll('[data-order-info]').forEach(food => {
-    order.push(food.textContent)
-    if (order.length === PRODUCT_CUSTOMIZE_OPT) {
-      // 餐點數量+1
-      totalOrder++
-      // 打發票
-      invoice += `<ul class="list-group list-group-flush">
-  <li class="list-group-item">${order.join(' / ')}</li >
-</ul > `
-      // 重置
-      order = []
-    }
+  document.querySelectorAll('[data-order-info]').forEach(item => {
+    order.push(item.textContent)
+    rawHTML += `<div class="grid-item">${item.textContent}</div>`
   })
+
   // get all price on orders and add on
   document.querySelectorAll('[data-food-price]').forEach(food => {
     totalPrice += Number(food.textContent)
   })
-  //render on modal
-  checkoutInfo = `
-${invoice}
-<br>
-<div class="text-right">
-<p>共${totalOrder}份</p>
-<p>Total: ${totalPrice}</p>
-</div>
-`
-  modalContent.innerHTML = checkoutInfo
+  totalOrder = (order.length) / 3
+  modalContent.innerHTML = `
+  <div id="wrapper">${rawHTML}</div>
+  <div class="text-right mt-3 mr-3">
+  <p>共${totalOrder}份</p>
+  <p>Total: ${totalPrice}</p>
+  </div>
+  `
 }
 
 Pos.prototype.clearOrder = function (target) {
@@ -156,5 +145,6 @@ Pos.prototype.clearOrder = function (target) {
 
 Pos.prototype.addToOrderHistory = function () {
   // 獲取訂單內容
+  // 將訂單分裝好
   // 存進localStorage
 }
