@@ -1,6 +1,7 @@
 const addFoodButton = document.querySelector('[data-pos="add-food"]')
 const orderLists = document.querySelector('[data-order-lists]')
 const checkoutBtn = document.querySelector('[data-pos="checkout"]')
+const confirmCheckout = document.querySelector('#send')
 // constructor function
 function Pos() {
 }
@@ -44,6 +45,10 @@ orderLists.addEventListener('click', (e) => {
 checkoutBtn.addEventListener('click', () => {
   // get total count
   steakPos.checkout()
+})
+
+confirmCheckout.addEventListener('click', e => {
+  console.log('yes')
   // clean order list
   steakPos.clearOrder(orderLists)
 })
@@ -112,7 +117,7 @@ Pos.prototype.checkout = function () {
   document.querySelectorAll('[data-food-price]').forEach(drink => {
     total += Number(drink.textContent)
   })
-  alert(`total: ${total}`)
+  // alert(`total: ${total}`)
 }
 
 Pos.prototype.clearOrder = function (target) {
