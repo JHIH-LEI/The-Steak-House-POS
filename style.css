@@ -28,7 +28,7 @@ body {
   border-radius:50%;
 }
 
-[data-pos="delete-drink"] {
+[data-pos="delete-food"] {
   display: inline-block;
   text-align: center;
   color: #999;
@@ -39,7 +39,7 @@ body {
   line-height: 1;
 }
 
-[data-pos="delete-drink"]:hover {
+[data-pos="delete-food"]:hover {
   color: #333;
 }
 
