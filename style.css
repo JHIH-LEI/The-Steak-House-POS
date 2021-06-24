@@ -54,4 +54,5 @@ body {
 
 .col-md-4 {
   overflow-y: auto;
+  max-height: 580px;
 }
