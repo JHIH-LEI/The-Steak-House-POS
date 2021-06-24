@@ -30,7 +30,6 @@ addFoodButton.addEventListener('click', () => {
   // create food instance
   const orderFood = new Food(food, sauce, maturity)
   // add to order list
-  console.log(orderFood)
   steakPos.addFood(orderFood)
 })
 
@@ -48,7 +47,6 @@ checkoutBtn.addEventListener('click', () => {
 })
 
 confirmCheckout.addEventListener('click', e => {
-  console.log('yes')
   // clean order list
   steakPos.clearOrder(orderLists)
 })
@@ -85,9 +83,9 @@ Pos.prototype.addFood = function (food) {
               <span data-pos="delete-food">×</span>
             </div>
             <!-- /delete drink icon -->
-            <h6 class="card-title">${food.name}</h6>
-            <div class="card-text">${food.sauce}</div>
-            <div class="card-text">${food.maturity}</div>
+            <h6 class="card-title" data-order-info>${food.name}</h6>
+            <div class="card-text" data-order-info>${food.sauce}</div>
+            <div class="card-text" data-order-info>${food.maturity}</div>
           </div>
           <div class="card-footer text-right">
             <div class="card-text text-muted">
@@ -112,12 +110,40 @@ Pos.prototype.deleteOrder = function (target) {
 }
 
 Pos.prototype.checkout = function () {
-  let total = 0
-  // get all price on orders and add on
-  document.querySelectorAll('[data-food-price]').forEach(drink => {
-    total += Number(drink.textContent)
+  let totalPrice = 0
+  let order = []
+  let invoice = ""
+  let totalOrder = 0
+  let checkoutInfo = ``
+  const modalContent = document.querySelector('.modal-body')
+  // 訂單資料
+  document.querySelectorAll('[data-order-info]').forEach(food => {
+    order.push(food.textContent)
+    if (order.length === 3) {
+      // 餐點數量+1
+      totalOrder++
+      // 打發票
+      invoice += `<ul class="list-group list-group-flush">
+  <li class="list-group-item">${order.join(' / ')}</li >
+</ul > `
+      // 重置
+      order = []
+    }
   })
-  // alert(`total: ${total}`)
+  // get all price on orders and add on
+  document.querySelectorAll('[data-food-price]').forEach(food => {
+    totalPrice += Number(food.textContent)
+  })
+  //render on modal
+  checkoutInfo = `
+${invoice}
+<br>
+<div class="text-right">
+<p>共${totalOrder}份</p>
+<p>Total: ${totalPrice}</p>
+</div>
+`
+  modalContent.innerHTML = checkoutInfo
 }
 
 Pos.prototype.clearOrder = function (target) {
