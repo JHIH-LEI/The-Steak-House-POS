@@ -30,7 +30,7 @@ addFoodButton.addEventListener('click', () => {
     return
   }
   // create food instance
-  const orderFood = new Food(food, sauce, maturity)
+  const orderFood = new Food(food, sauce, maturity) //一個餐點
   // add to order list
   steakPos.addFood(orderFood)
 })
@@ -115,13 +115,14 @@ Pos.prototype.deleteOrder = function (target) {
 
 Pos.prototype.checkout = function () {
   let totalPrice = 0
-  let totalOrder = 0
-  let order = []
+  let totalFoods = 0 //一筆訂單中總共有幾份食物
+  let order = [] //這筆訂單的明細
   let rawHTML = ``
   const modalContent = document.querySelector('.modal-body')
   // 訂單資料
+  // data-order-info包含食物名、醬汁、熟度
   document.querySelectorAll('[data-order-info]').forEach(item => {
-    order.push(item.textContent)
+    order.push(item.textContent) //將每個食物的資訊都放入訂單資料中
     rawHTML += `<div class="grid-item">${item.textContent}</div>`
   })
 
@@ -129,17 +130,17 @@ Pos.prototype.checkout = function () {
   document.querySelectorAll('[data-food-price]').forEach(food => {
     totalPrice += Number(food.textContent)
   })
-  totalOrder = (order.length) / 3
+  totalFoods = (order.length) / 3
   modalContent.innerHTML = `
   <div id="wrapper">${rawHTML}</div>
   <div class="text-right mt-3 mr-3">
-  <p>共${totalOrder}份</p>
+  <p>共${totalFoods}份</p>
   <p>Total: ${totalPrice}</p>
   </div>
   `
-  order.push(totalPrice)
-  order.push(totalOrder)
-  rawOrderHistory = order
+  order.push(totalPrice) //把價格加入訂單明細
+  order.push(totalFoods) //把食物總份數加入訂單明細
+  rawOrderHistory = order //將訂單明細存到區域變數中的未整理歷史訂單
 }
 
 Pos.prototype.clearOrder = function (target) {
@@ -157,7 +158,7 @@ Pos.prototype.addToOrderHistory = function (data) {
   // 加上訂單時間
   const today = new Date()
   ordersData.push(today)
-  // 包為整筆訂單
+  // 包為整筆訂單 餐點+總額＋數量
   ordersData = ordersData.join()
   // 將這筆訂單加入到歷史中
   orderHistory.push(ordersData)
